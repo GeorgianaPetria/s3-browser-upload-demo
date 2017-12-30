@@ -1,3 +1,4 @@
+var cors = require('cors')
 var express = require('express');
 var crypto = require('crypto');
 var path = require('path');
@@ -12,6 +13,19 @@ var s3Config = {
 };
 
 var app = express();
+
+var whitelist = ['http://machinemedicine.com', 'http://localhost:8080']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions))
 
 app.set('port', (process.env.PORT || 5000));
 

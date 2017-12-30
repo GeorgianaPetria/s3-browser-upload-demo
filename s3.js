@@ -54,7 +54,6 @@ function s3UploadPolicy(config, params, credential) {
       // A content-type clause is required (even if it's all-permissive)
       // so that the uploader can specify a content-type for the file
       ['starts-with', '$Content-Type',  ''],
-      ['content-length-range', 0, 1000],
       { 'x-amz-algorithm': 'AWS4-HMAC-SHA256' },
       { 'x-amz-credential': credential },
       { 'x-amz-date': dateString() + 'T000000Z' }
