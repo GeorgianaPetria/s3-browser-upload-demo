@@ -14,7 +14,7 @@ var s3Config = {
 
 var app = express();
 
-var whitelist = ['http://machinemedicine.com', 'http://localhost:8080']
+var whitelist = ['http://machinemedicine.com']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -27,7 +27,7 @@ var corsOptions = {
 
 app.use(cors(corsOptions))
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 80));
 
 app.use(express.static(__dirname + '/public'));
 
